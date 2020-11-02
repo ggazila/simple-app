@@ -2,7 +2,7 @@ pipeline {
 
    agent any
    environment {
-       OKTA_OAUTH2_ISSUER           = '{yourOktaDomain}/oauth2/default'
+       OKTA_OAUTH2_ISSUER           = 'https://dev-742911.okta.com/oauth2/default'
        OKTA_OAUTH2_CLIENT_ID        = credentials('OKTA_OAUTH2_CLIENT_ID')
        OKTA_OAUTH2_CLIENT_SECRET    = credentials('OKTA_OAUTH2_CLIENT_SECRET')
    }
