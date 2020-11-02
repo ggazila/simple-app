@@ -11,4 +11,9 @@ public class GreetingController {
     public String greet(@AuthenticationPrincipal OidcUser user) {
         return "Hello " + user.getEmail();
     }
+
+    @GetMapping("/index")
+    public String greet() {
+        return "Index";
+    }
 }

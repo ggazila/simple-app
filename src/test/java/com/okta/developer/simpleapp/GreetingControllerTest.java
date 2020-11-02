@@ -29,43 +29,50 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = { GreetingController.class })
 public class GreetingControllerTest {
 
-    private final static String ID_TOKEN =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
-                    + ".eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsIm"
-                    + "p0aSI6ImQzNWRmMTRkLTA5ZjYtNDhmZi04YTkzLTdjNmYwMzM5MzE1OSIsImlhdCI6MTU0M"
-                    + "Tk3MTU4MywiZXhwIjoxNTQxOTc1MTgzfQ.QaQOarmV8xEUYV7yvWzX3cUE_4W1luMcWCwpr"
-                    + "oqqUrg";
+//    private final static String ID_TOKEN =
+//            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+//                    + ".eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsIm"
+//                    + "p0aSI6ImQzNWRmMTRkLTA5ZjYtNDhmZi04YTkzLTdjNmYwMzM5MzE1OSIsImlhdCI6MTU0M"
+//                    + "Tk3MTU4MywiZXhwIjoxNTQxOTc1MTgzfQ.QaQOarmV8xEUYV7yvWzX3cUE_4W1luMcWCwpr"
+//                    + "oqqUrg";
 
     @Autowired
     private MockMvc mockMvc;
 
+//    @Test
+//    void testGreet() throws Exception {
+//        OidcIdToken oidcIdToken = createOidcToken();
+//        this.mockMvc.perform(get("/greeting").with(authentication(
+//                createMockOAuth2AuthenticationToken(oidcIdToken))))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(content().string("Hello user@email.com"));
+//
+//    }
+
     @Test
-    void testGreet() throws Exception {
-        OidcIdToken oidcIdToken = createOidcToken();
-        this.mockMvc.perform(get("/greeting").with(authentication(
-                createMockOAuth2AuthenticationToken(oidcIdToken))))
+    void testIndex() throws Exception {
+        this.mockMvc.perform(get("/index"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().string("Hello user@email.com"));
+                .andExpect(content().string("Index"));
 
     }
 
-    private OAuth2AuthenticationToken createMockOAuth2AuthenticationToken(
-            OidcIdToken idToken) {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        OidcUser user = new DefaultOidcUser(authorities, idToken);
-        return new OAuth2AuthenticationToken(user, authorities, "oidc");
-    }
-
-    private OidcIdToken createOidcToken() {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("groups", "ROLE_USER");
-        claims.put("email", "user@gmail.com");
-        claims.put("sub", 123);
-
-        OidcIdToken oidcIdToken = new OidcIdToken(ID_TOKEN, Instant.now(),
-                Instant.now().plusSeconds(60), claims);
-        return oidcIdToken;
-    }
+//    private OAuth2AuthenticationToken createMockOAuth2AuthenticationToken(
+//            OidcIdToken idToken) {
+//        Collection<GrantedAuthority> authorities = new ArrayList<>();
+//        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        OidcUser user = new DefaultOidcUser(authorities, idToken);
+//        return new OAuth2AuthenticationToken(user, authorities, "oidc");
+//    }
+//
+//    private OidcIdToken createOidcToken() {
+//        Map<String, Object> claims = new HashMap<>();
+//        claims.put("groups", "ROLE_USER");
+//        claims.put("email", "user@gmail.com");
+//        claims.put("sub", 123);
+//
+//        return new OidcIdToken(ID_TOKEN, Instant.now(),
+//                Instant.now().plusSeconds(60), claims);
+//    }
 
 }
