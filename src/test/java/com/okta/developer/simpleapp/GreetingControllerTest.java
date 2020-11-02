@@ -52,7 +52,7 @@ public class GreetingControllerTest {
     @Test
     void testIndex() throws Exception {
         this.mockMvc.perform(get("/index"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(content().string("Index"));
 
     }
