@@ -16,7 +16,7 @@ pipeline {
 
             // Get some code from a GitHub repository
 
-            git 'https://github.com/<your-username>/simple-app.git'
+            git 'https://github.com/ggazila/simple-app.git'
 
 
             // Run Maven on a Unix agent.
